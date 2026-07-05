@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <h1>Prediction Result</h1>
+
+    </header>
+
+    {% if error %}
+
+        <div class="error-box">
+
+            <h2>Error</h2>
+
+            <p>{{ error }}</p>
+
+            <a href="{{ url_for('index') }}">
+                <button>Go Back</button>
+            </a>
+
+        </div>
+
+    {% else %}
+
+    <div class="result-card">
+
+        <h2>Classification Result</h2>
+
+        <table>
+
+            <tr>
+                <td><strong>Predicted Modulation</strong></td>
+                <td>{{ modulation }}</td>
+            </tr>
+
+            <tr>
+                <td><strong>Confidence</strong></td>
+                <td>{{ confidence }}%</td>
+            </tr>
+
+            <tr>
+                <td><strong>Prediction Time</strong></td>
+                <td>{{ prediction_time }} seconds</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <div class="plots">
+
+        <h2>Generated Visualizations</h2>
+
+        <div class="plot-grid">
+
+            <div class="plot-card">
+                <h3>Constellation Diagram</h3>
+                <img src="{{ url_for('static', filename=constellation) }}"
+                     alt="Constellation">
+            </div>
+
+            <div class="plot-card">
+                <h3>Waveform</h3>
+                <img src="{{ url_for('static', filename=waveform) }}"
+                     alt="Waveform">
+            </div>
+<div class="plot-card">
+                <h3>Frequency Spectrum (FFT)</h3>
+                <img src="{{ url_for('static', filename=fft) }}"
+                     alt="FFT Spectrum">
+            </div>
+
+            <div class="plot-card">
+                <h3>Spectrogram</h3>
+                <img src="{{ url_for('static', filename=spectrogram) }}"
+                     alt="Spectrogram">
+            </div>
+
+            <div class="plot-card">
+                <h3>Prediction Confidence</h3>
+                <img src="{{ url_for('static', filename=confidence_plot) }}"
+                     alt="Confidence">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="action-buttons">
+
+        <a href="{{ url_for('index') }}">
+
+            <button>
+
+                Analyze Another Signal
+
+            </button>
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+    <footer>
+
+        <hr>
+
+        <p>
+            AI-Based Automatic Modulation Recognition for DVB-S2X
+        </p>
+
+        <p>
+            Deep Learning • Flask • TensorFlow • Python
+        </p>
+
+    </footer>
+
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+
+</html>
