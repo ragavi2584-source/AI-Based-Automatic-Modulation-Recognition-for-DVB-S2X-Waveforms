@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        AI-Based Automatic Modulation Recognition
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <h1>
+            AI-Based Automatic Modulation Recognition
+        </h1>
+
+        <p>
+            DVB-S2X Waveform Classification using Deep Learning
+        </p>
+
+    </header>
+
+    <div class="upload-card">
+
+        <h2>Upload I/Q Signal</h2>
+
+        <form
+
+            action="{{ url_for('upload') }}"
+
+            method="POST"
+
+            enctype="multipart/form-data">
+
+            <input
+
+                type="file"
+
+                name="signal"
+
+                accept=".npy"
+
+                required>
+
+            <br><br>
+
+            <button type="submit">
+
+                Predict Modulation
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="info">
+
+        <h3>Supported Modulations</h3>
+
+        <ul>
+
+            <li>16APSK</li>
+
+            <li>32APSK</li>
+
+            <li>64APSK</li>
+
+        </ul>
+
+    </div>
+<div class="features">
+
+        <h2>Project Features</h2>
+
+        <div class="feature-grid">
+
+            <div class="card">
+                <h3>📡 AI Classification</h3>
+                <p>Detects DVB-S2X modulation using a CNN model.</p>
+            </div>
+
+            <div class="card">
+                <h3>📈 Signal Analysis</h3>
+                <p>Displays waveform, constellation and FFT plots.</p>
+            </div>
+
+            <div class="card">
+                <h3>⚡ Fast Prediction</h3>
+                <p>Provides real-time modulation prediction with confidence.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="workflow">
+
+        <h2>Workflow</h2>
+
+        <ol>
+            <li>Upload an I/Q (.npy) signal.</li>
+            <li>Preprocess the signal.</li>
+            <li>CNN predicts the modulation type.</li>
+            <li>View confidence score and signal visualizations.</li>
+        </ol>
+
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+            <div class="flash">
+
+                {% for message in messages %}
+
+                    <p>{{ message }}</p>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+    {% endwith %}
+
+    <footer>
+
+        <hr>
+
+        <p>
+            AI-Based Automatic Modulation Recognition for DVB-S2X Waveforms
+        </p>
+
+        <p>
+            Hackathon Project | Flask • TensorFlow • Python
+        </p>
+
+    </footer>
+
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+
+</html>
