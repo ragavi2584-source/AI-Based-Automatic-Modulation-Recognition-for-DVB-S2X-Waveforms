@@ -249,3 +249,92 @@ def plot_confusion_matrix(
     plt.close()
 
     return path
+# ------------------------------------------
+# Generate All Visualizations
+# ------------------------------------------
+
+def generate_all_plots(signal,
+                       prediction=None,
+                       confidence=None):
+
+    results = {}
+
+    results["constellation"] = plot_constellation(signal)
+
+    results["waveform"] = plot_waveform(signal)
+
+    results["fft"] = plot_fft(signal)
+
+    results["spectrogram"] = plot_spectrogram(signal)
+
+    if confidence is not None:
+
+        class_names = [
+            "16APSK",
+            "32APSK",
+            "64APSK"
+        ]
+
+        results["confidence"] = plot_confidence(
+            confidence,
+            class_names
+        )
+
+    if prediction is not None:
+
+        print("\nPrediction :", prediction)
+
+    return results
+
+
+# ------------------------------------------
+# Clean Old Images
+# ------------------------------------------
+
+def clear_plots():
+
+    if not os.path.exists(OUTPUT_DIR):
+        return
+
+    for file in os.listdir(OUTPUT_DIR):
+
+        path = os.path.join(
+            OUTPUT_DIR,
+            file
+        )
+
+        if os.path.isfile(path):
+            os.remove(path)
+
+    print("Old plots removed.")
+
+
+# ------------------------------------------
+# Example Usage
+# ------------------------------------------
+
+if __name__ == "__main__":
+
+    print("Visualization Module Test")
+
+    signal = (
+        np.random.randn(128)
+        +
+        1j * np.random.randn(128)
+    )
+
+    clear_plots()
+
+    confidence = [
+        0.15,
+        0.72,
+        0.13
+    ]
+
+    generate_all_plots(
+        signal,
+        prediction="32APSK",
+        confidence=confidence
+    )
+
+    print("Plots generated successfully.")
