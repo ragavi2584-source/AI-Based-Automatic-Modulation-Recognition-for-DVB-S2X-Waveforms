@@ -1,6 +1,4 @@
-
-
-#AI-Based Automatic Modulation Recognition (AMR) for DVB-S2X Waveforms
+AI-Based Automatic Modulation Recognition (AMR) for DVB-S2X Waveforms
 
 Overview
 
